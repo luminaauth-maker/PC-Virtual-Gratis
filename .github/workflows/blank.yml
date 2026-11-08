@@ -1,0 +1,30 @@
+
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows10
+
+    environment:
+      VERSION: "10"
+      LANGUAGE: "Portuguese"
+      RAM_SIZE: "4G"
+      CPU_CORES: "2"
+      DISK_SIZE: "64G"
+      USERNAME: "Usuario"
+      PASSWORD: "TroqueEstaSenha123!"
+
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+
+    cap_add:
+      - NET_ADMIN
+
+    ports:
+      - "8006:8006"
+
+    volumes:
+      - ./windows:/storage
+
+    restart: unless-stopped
+    
